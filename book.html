@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta charset="UFT-8">
+    <title>Travel Agency</title>
+    <link rel="stylesheet" href="styles/stylebook.css">
+        
+</head>
+<body>
+    <div class="main">
+        <div>
+            <h2>Register here</h2>
+            <h3>About you</h3>
+        </div>
+        <div class="register">
+            <form action="link"method="get" accept-charset="utf-8">
+                <div>
+                    <label for="Name" required>First Name*</label><br>
+                    <input type="text" id="Name" placeholder="Enter your first name" class="name">
+                    <span id="NameSpn"></span>
+                </div><br>
+                <div>
+                    <label for="LastName" required>Last Name*</label><br>
+                    <input type="text" id="LastName" placeholder="Enter your last name" class="name">
+                    <span id="LastNameSpn"></span>
+                </div><br>
+                <div>
+                    <label for="Email" required>Email*</label><br>
+                    <input type="email" id="Email" placeholder="Enter your email" class="name">
+                    <span id="EmailSpn"></span>
+                </div><br>
+                <div>
+                    <label for="PhoneNumber"  required>Phone number*</label><br>
+                    <input type="tel" id="PhoneNumber" placeholder="Enter your phone number" class="name">
+                    <span id="PhoneNumberSpn"></span>
+                </div><br>
+
+                <div>
+                    <label for="NumberOfPersons" required>Number of persons*</label><br>
+                   <input type="number" name="NumberOfPersons" id="check" min="1" placeholder="choice" required><br>
+                    <span id="checkSpn"></span>
+                </div>
+                <h4>Leaving from:</h4>
+                <div>
+                    <select id="LState" size="1" class="dropdown-group">
+                        <option value="Albania" selected="selected">Albania</option>
+                    </select>
+                    <span id="LStateSpn"></span>
+                    <select id="LCity" size="1" class="dropdown-group" >
+                        <option value="Tirana" selected="selected">Tirana</option>
+                        <option value="Lushnje" selected="selected">Lushnje</option>
+                        <option value="Elbasan" selected="selected">Elbasan</option>
+                        <option value="Vlore" selected="selected">Vlore</option>
+                    </select>
+                    <span id="LCitySpn"></span>
+                    
+                </div><br>
+                <h4>Traveling to:</h4>
+                <div>
+                    <select id="TState" size="1" class="dropdown-group">
+                        <option value="Germany" selected="selected">Germany</option>
+                        <option value="France" selected="selected">France</option>
+                        <option value="Netherand" selected="selected">Netherland</option>
+                        <option value="Italy" selected="selected">Italy</option>
+                    </select>
+                    <span id="TStateSpn"></span>
+                    <select id="TCity" size="1" class="dropdown-group">
+                        <option value="Berlin" selected="selected">Berlin</option>
+                        <option value="Munchen" selected="selected">Munchen</option>
+                        <option value="Freiburg" selected="selected">Freiburg</option>
+                        <option value="Paris" selected="selected">Paris</option>
+                        <option value="Amsterdam" selected="selected">Amsterdam</option>
+                        <option value="Rome" selected="selected">Rome</option>
+                        <option value="Milano" selected="selected">Milano</option>
+                        </select>
+                        <span id="TCitySpn"></span>
+                </div><br>
+               
+                <div>
+                    <label for="Gender">Your gender:</label><br>
+                    <label for="Male">Male</label>
+                    <input type="radio" name="Gender" id="Male">
+                    <label for="Female">Female</label>
+                    <input type="radio" name="Gender" id="Female">
+                </div><br>
+                <div>
+                    
+                    <button id="submitBtn">Book now </button>
+                </div>
+                
+            </form>
+        </div>
+        <img class="logo" src="https://www.adpost.com/classifieds/upload/in/tickets/in_tickets.2232.1.jpg?bypass" alt="Logo">
+    </div>
+   <script src="script/book.js"></script>
+</body>
+</html>
