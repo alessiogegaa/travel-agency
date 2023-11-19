@@ -1,11 +1,14 @@
 * {
     font-family: Open Sans;
   }
-body{
+  body {
     background-image: url(http://getwallpapers.com/wallpaper/full/c/e/e/1523513-airplane-wallpapers-1920x1080-4k.jpg);
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #03f0fc;   
 }
+
 .banner{
     width: 100%;
     height: 80px;
