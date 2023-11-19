@@ -370,7 +370,7 @@ img {
 }
 
 .imgFooter {
-    width: calc(20% - 10px); /* 33.33% minus margin for 3 images in a row */
+    width: calc(20% - 10px); 
     height: auto;
     margin: 5px;
     border-radius: 15px;
