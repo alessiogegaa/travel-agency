@@ -3,9 +3,9 @@
   }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('/assets/plane.jpg');
+    background-image: url(https://assets.bwbx.io/images/users/iqjWHBFdfxIU/inz2aw4qyHXU/v0/1200x800.jpg);
     background-size: cover;
-    background-color: #f4f4f4;
+    background-color: white;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -41,7 +41,7 @@ nav ul li a{
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 2px;
-    color: #fff;
+    color: white;
 }
 
 
@@ -52,7 +52,7 @@ ul li a::after{
     position: absolute;
     left: 0;
     bottom: -5px;
-    background-color: #fff;
+    background-color: #3498db;
     transition: 0.6s ease-out;
     
 }
