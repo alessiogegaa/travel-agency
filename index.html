@@ -3,24 +3,8 @@
 <head>
     <link rel="stylesheet" href="styles/style.css">
     <title>Travel Agency</title>
-    <script>
-    function scrollToPrices() {
-        const pricesSection = document.getElementById("prices");
-        pricesSection.scrollIntoView({
-            behavior: "smooth"
-        });
-    }
-    function scrollToDestination(){
-            const dest = document.getElementById("destination");
-            dest.scrollIntoView({
-                behavior:'smooth'
-            });
-        }
-        function moveToBook()
-        {
-            window.location.href = 'book.html';
-        }   
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script/index.js"></script>
 </head>
 <body class="body">
     <header>
@@ -30,9 +14,11 @@
                 <div class="nav-links">
                     <nav>
                         <ul>
-                            <li><a href="/index.html">Home</a></li>
-                            <li><a href="/book.html">Book Your Flight</a></li>
-                            <li><a href="/reservations.html">Bookings</a></li>
+                            <li id="homeLink"><a href="/index.html">Home</a></li>
+                            <li id="bookFlightLink"><a href="/book.html">Book Your Flight</a></li>
+                            <li id="bookingsLink"><a href="/reservations.html">Bookings</a></li>
+                            <li id="loginLink"><a href="/login.html">Log In</a></li>
+                            <li id="logoutLink" style="display:none;"><a href="#" onclick="logout()">Log Out</a></li>
                         </ul>
                     </nav>
                 </div>

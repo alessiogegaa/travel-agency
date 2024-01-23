@@ -3,7 +3,7 @@
     <meta charset="UFT-8">
     <title>Travel Agency</title>
     <link rel="stylesheet" href="styles/stylebook.css">
-        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -12,9 +12,11 @@
             <div class="nav-links">
                 <nav>
                     <ul>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="/book.html">Book Your Flight</a></li>
-                        <li><a href="/reservations.html">Bookings</a></li>
+                        <li id="homeLink"><a href="/index.html">Home</a></li>
+                        <li id="bookFlightLink"><a href="/book.html">Book Your Flight</a></li>
+                        <li id="bookingsLink"><a href="/reservations.html">Bookings</a></li>
+                        <li id="loginLink"><a href="/login.html">Log In</a></li>
+                        <li id="logoutLink" style="display:none;"><a href="#" onclick="logout()">Log Out</a></li>
                     </ul>
                 </nav>
             </div>

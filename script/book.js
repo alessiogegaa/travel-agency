@@ -15,40 +15,40 @@ function validateAndSubmit(event){
     event.preventDefault();
 
     var isValidated = true;
-    const NumberOfPersons =document.getElementById("check").value;
-    const Gender = getSelectedGender();
+    const number_of_persons =document.getElementById("check").value;
+    const gender = getSelectedGender();
     document.getElementById("NameSpn").innerHTML = "";
     document.getElementById("LastNameSpn").innerHTML = "";
     document.getElementById("EmailSpn").innerHTML = "";
     document.getElementById("PhoneNumberSpn").innerHTML = "";
     
 
-    const Name = document.getElementById("Name").value;
-    if(Name.length < 3){
+    const first_name = document.getElementById("Name").value;
+    if(first_name.length < 3){
         document.getElementById("NameSpn").innerHTML = "Name must be min 3 chars";
         isValidated = false;
     }
-    const LastName = document.getElementById("LastName").value;
-    if(LastName.length < 3){
+    const last_name = document.getElementById("LastName").value;
+    if(last_name.length < 3){
         document.getElementById("LastNameSpn").innerHTML = "LastName must be min 3 chars";
         isValidated = false;
     }
 
-    const Email = document.getElementById("Email").value;
+    const email = document.getElementById("Email").value;
 
-    if(Email.endsWith("@gmail.com")){
+    if(email.endsWith("@gmail.com")){
     } else {
         document.getElementById("EmailSpn").innerHTML = "This is not a valid Email"
         isValidated = false;
     }
 
-    const PhoneNumber = document.getElementById("PhoneNumber").value;
-    if(PhoneNumber.length < 10){
+    const phone_number = document.getElementById("PhoneNumber").value;
+    if(phone_number.length < 10){
         document.getElementById("PhoneNumberSpn").innerHTML = "PhoneNumber must be min 10 numbers";
         isValidated = false;
     }
-    const leaving = document.getElementById("LState").value.toString()+" "+ document.getElementById("LCity").value.toString();
-    const travelling = document.getElementById("TState").value.toString()+" "+ document.getElementById("TCity").value.toString();
+    const leaving_from = document.getElementById("LState").value.toString()+" "+ document.getElementById("LCity").value.toString();
+    const traveling_to = document.getElementById("TState").value.toString()+" "+ document.getElementById("TCity").value.toString();
     if((!document.getElementById("Male").checked)  && (!document.getElementById("Female").checked)){
        isValidated=false;
     }
@@ -56,40 +56,78 @@ function validateAndSubmit(event){
         isValidated=true;
     }
     
-    if (!Name || !LastName || !Email || !PhoneNumber || !isValidated || !NumberOfPersons) {
+    if (!first_name || !last_name || !email || !phone_number || !isValidated || !number_of_persons) {
         alert("Please fill in all required fields.");
     } else {
-        handleSubmit(Name,LastName,Email, NumberOfPersons, PhoneNumber,Gender,leaving,travelling); 
+        handleSubmit(first_name,last_name,email, number_of_persons, phone_number,gender,leaving_from,traveling_to); 
     }
 
 
 }
+
+const accessToken = localStorage.getItem('accessToken') || null;
+document.addEventListener('DOMContentLoaded', function () { 
+    const homeLink = document.getElementById('homeLink');
+    const bookFlightLink = document.getElementById('bookFlightLink');
+    const bookingsLink = document.getElementById('bookingsLink');
+    const loginLink = document.getElementById('loginLink');
+    const logoutLink = document.getElementById('logoutLink');
+
+    if (accessToken!=null) {
+      homeLink.style.display = 'inline-block';
+      bookFlightLink.style.display = 'inline-block';
+      bookingsLink.style.display = 'inline-block';
+      loginLink.style.display = 'none';
+      logoutLink.style.display = 'inline-block';
+    } else {
+      homeLink.style.display = 'inline-block';
+      bookFlightLink.style.display = 'none';
+      bookingsLink.style.display = 'none';
+      loginLink.style.display = 'inline-block';
+      logoutLink.style.display = 'none';
+    }
+}); 
+
+  function logout() {
+    localStorage.removeItem('accessToken');
+
+    window.location.href = '/login.html';
+
+  }
 
 function handleSubmit(_Name,_LastName, _Email, _NumberOfPersons, _PhoneNumber, _Gender,leaving,travelling){
    
     var newBook = {
-        Name: _Name,
-        LastName:_LastName,
-        Email: _Email,
-        NumberOfPersons: _NumberOfPersons,
-        PhoneNumber:_PhoneNumber,
-        LeavingFrom: leaving,
-        TravellingTo: travelling,
-        Gender:_Gender
+        first_name: _Name,
+        last_name:_LastName,
+        email: _Email,
+        phone_number:_PhoneNumber,
+        number_of_persons: _NumberOfPersons,
+        leaving_from: leaving,
+        traveling_to: travelling,
+        gender:_Gender
     }
+    var jsonString = JSON.stringify(newBook);
+    console.log(jsonString);
 
-    console.log('newBook Object = ', newBook);
+    $.ajax({
+        url: 'http://localhost:3000/api/bookings',
+        method: 'POST',
+        contentType: 'application/json', 
+        data: jsonString, 
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },  
+        success: function(data) {
+          alert(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Error:', textStatus, errorThrown);
+          console.log('Response:', jqXHR.responseText);
+        }
+      });
 
-    var existingBookings = JSON.parse(localStorage.getItem('bookings')) || [];
-
-    existingBookings.push(newBook);
-
-    localStorage.setItem('bookings', JSON.stringify(existingBookings));
-
-    alert('Your Booking is confirmed');
-}
-
-
+    }
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const bookNowBtn = document.getElementById("submitBtn")
@@ -97,87 +135,159 @@ document.addEventListener('DOMContentLoaded', (event) => {
         bookNowBtn.addEventListener("click", validateAndSubmit)
     }
 });
+function renderData(data)
+{
+    JSON.parse(data);
+}
 function submitForm() {
+    $.ajax({
+        url: 'http://localhost:3000/api/bookings',
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        success: function (data) {
+            addDataToTable(data);
+        },
+        error: function (error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+}
 
-    var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-
+function addDataToTable(bookings) {
     const table = document.getElementById('reservationTable').getElementsByTagName('tbody')[0];
+    table.innerHTML = '';
 
     for (let i = 0; i < bookings.length; i++) {
         const newRow = table.insertRow(table.rows.length);
 
-        const cell1 = newRow.insertCell(0);
-        const cell2 = newRow.insertCell(1);
-        const cell3 = newRow.insertCell(2);
-        const cell4 = newRow.insertCell(3);
-        const cell5 = newRow.insertCell(4);
-        const cell6 = newRow.insertCell(5);
-        const cell7 = newRow.insertCell(6);
-        const cell8 = newRow.insertCell(7);
-        const cell9 = newRow.insertCell(8);
+        const cell0 = newRow.insertCell(0); 
+        const cell1 = newRow.insertCell(1);
+        const cell2 = newRow.insertCell(2);
+        const cell3 = newRow.insertCell(3);
+        const cell4 = newRow.insertCell(4);
+        const cell5 = newRow.insertCell(5);
+        const cell6 = newRow.insertCell(6);
+        const cell7 = newRow.insertCell(7);
+        const cell8 = newRow.insertCell(8);
+        const cell9 = newRow.insertCell(9); 
 
-        cell1.innerHTML = bookings[i].Name;
-        cell2.innerHTML = bookings[i].LastName;
-        cell3.innerHTML = bookings[i].Email;
-        cell4.innerHTML = bookings[i].PhoneNumber;
-        cell5.innerHTML = bookings[i].NumberOfPersons;
-        cell6.innerHTML = bookings[i].LeavingFrom;
-        cell7.innerHTML = bookings[i].TravellingTo;
-        cell8.innerHTML = bookings[i].Gender;
-        cell9.innerHTML = '<span class="edit-btn" onclick="editRow(this)">Edit</span> <span class="remove-btn" onclick="removeRow(this)">Remove</span>';
+        cell0.innerHTML = bookings[i].booking_id; 
+        cell1.innerHTML = bookings[i].first_name;
+        cell2.innerHTML = bookings[i].last_name;
+        cell3.innerHTML = bookings[i].email;
+        cell4.innerHTML = bookings[i].phone_number;
+        cell5.innerHTML = bookings[i].number_of_persons;
+        cell6.innerHTML = bookings[i].leaving_from;
+        cell7.innerHTML = bookings[i].traveling_to;
+        cell8.innerHTML = bookings[i].gender;
+        //admin alesiogega5@epoka.edu.al Gegaalessio2003
+        const userRole = localStorage.getItem('role');
+
+        if (userRole && userRole === 'admin') {
+            cell9.innerHTML = '<span class="edit-btn" onclick="editRow(this)">Edit</span> <span class="remove-btn" onclick="removeRow(this)">Remove</span>';
+        }
     }
-
-}
-submitForm();
-function editRow(editBtn) {
-    const row = editBtn.closest('tr');
-    const rowIndex = row.rowIndex - 1; 
-
-    var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-
-    const editedFirstName = prompt('Edit First Name:', bookings[rowIndex].Name);
-    const editedLastName = prompt('Edit Last Name:', bookings[rowIndex].LastName);
-    const editedEmail = prompt('Edit Email:', bookings[rowIndex].Email);
-    const editedPhoneNumber = prompt('Edit Phone Number:', bookings[rowIndex].PhoneNumber);
-    const editedPersons = prompt('Edit Persons:', bookings[rowIndex].NumberOfPersons);
-    const editedFrom = prompt('Edit From:', bookings[rowIndex].LeavingFrom);
-    const editedTo = prompt('Edit To:', bookings[rowIndex].TravellingTo);
-    const editedGender = prompt('Edit Gender:', bookings[rowIndex].Gender);
-
-    bookings[rowIndex] = {
-        Name: editedFirstName,
-        LastName: editedLastName,
-        Email: editedEmail,
-        PhoneNumber: editedPhoneNumber,
-        NumberOfPersons: editedPersons,
-        LeavingFrom: editedFrom,
-        TravellingTo: editedTo,
-        Gender: editedGender,
-    };
-    updateTableRow(row, bookings[rowIndex]);
-    localStorage.setItem('bookings', JSON.stringify(bookings));
 }
 
-function removeRow(removeBtn) {
-    const row = removeBtn.closest('tr');
-    const rowIndex = row.rowIndex - 1; 
 
-    var bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+$(document).ready(function () {
+    submitForm();
+});
 
-    bookings.splice(rowIndex, 1);
 
-    localStorage.setItem('bookings', JSON.stringify(bookings));
+$(document).ready(function () {
+    $('#reservationTable').on('click', '.edit-btn', function () {
+        var row = $(this).closest('tr');
 
-    row.remove();
-}
+        row.find('td:not(:last-child)').each(function (index) {
+            if (index === 0) {
+                return;
+            }
 
-function updateTableRow(row, booking) {
-    row.cells[0].innerHTML = booking.Name;
-    row.cells[1].innerHTML = booking.LastName;
-    row.cells[2].innerHTML = booking.Email;
-    row.cells[3].innerHTML = booking.PhoneNumber;
-    row.cells[4].innerHTML = booking.NumberOfPersons;
-    row.cells[5].innerHTML = booking.LeavingFrom;
-    row.cells[6].innerHTML = booking.TravellingTo;
-    row.cells[7].innerHTML = booking.Gender;
-}
+            var currentText = $(this).text();
+            $(this).html('<input type="text" class="edit-input" value="' + currentText + '">');
+        });
+
+        $(this).text('Save').toggleClass('edit-btn save-btn');
+    });
+
+    $('#reservationTable').on('click', '.save-btn', function () {
+        var row = $(this).closest('tr');
+        var updateBook = {
+            booking_id: row.find('td:first-child').text(),
+            first_name: "",
+            last_name: "",
+            email: "",
+            phone_number: "",
+            number_of_persons: "",
+            leaving_from: "",
+            traveling_to: "",
+            gender: ""
+        };
+
+        row.find('td:not(:last-child)').each(function (index) {
+            if (index === 0) {
+                return;
+            }
+
+            var fieldName = [
+                "first_name",
+                "last_name",
+                "email",
+                "phone_number",
+                "number_of_persons",
+                "leaving_from",
+                "traveling_to",
+                "gender"
+            ][index - 1]; 
+
+            var newValue = $(this).find('.edit-input').val();
+            updateBook[fieldName] = newValue;
+
+            $(this).html(newValue);
+        });
+
+        $(this).text('Edit').toggleClass('edit-btn save-btn');
+
+        $.ajax({
+            type: 'PUT',
+            url: 'http://localhost:3000/api/bookings/' + updateBook.booking_id,
+            contentType: 'application/json',
+            data: JSON.stringify(updateBook),
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+        }).done(function () {
+            alert("Data Updated Successfully");
+        }).fail(function () {
+            alert("Error");
+        })
+    });
+});
+
+$(document).ready(function (){
+    $('#reservationTable').on('click', '.remove-btn', function () {
+        var row = $(this).closest('tr');
+        var bookingId = parseInt(row.find('td:first-child').text(), 10);
+
+        $.ajax({
+            url: 'http://localhost:3000/api/bookings/' + bookingId,
+            type: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            success: function(data) {
+                row.remove();
+                alert(data);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    });
+});
+
+
+

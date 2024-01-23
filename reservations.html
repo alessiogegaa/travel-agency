@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Agency</title>
     <link rel="stylesheet" href="styles/reservations.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -14,9 +15,11 @@
                 <div class="nav-links">
                     <nav>
                         <ul>
-                            <li><a href="/index.html">Home</a></li>
-                            <li><a href="/book.html">Book Your Flight</a></li>
-                            <li><a href="/reservations.html">Bookings</a></li>
+                            <li id="homeLink"><a href="/index.html">Home</a></li>
+                            <li id="bookFlightLink"><a href="/book.html">Book Your Flight</a></li>
+                            <li id="bookingsLink"><a href="/reservations.html">Bookings</a></li>
+                            <li id="loginLink"><a href="/login.html">Log In</a></li>
+                            <li id="logoutLink" style="display:none;"><a href="#" onclick="logout()">Log Out</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -27,11 +30,12 @@
     <table id="reservationTable">
         <thead>
             <tr>
+                <th>Booking ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone Number</th>
-                <th>Persons</th>
+                <th>People</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Gender</th>
@@ -40,6 +44,7 @@
         </thead>
         <tbody></tbody>
     </table>
+    
     
     <script src="script/book.js"></script>
 </body>

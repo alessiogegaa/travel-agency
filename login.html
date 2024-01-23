@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script/login.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="banner">
+            <div class="nav-links">
+                <nav>
+                    <ul>
+                        <li id="homeLink"><a href="/index.html">Home</a></li>
+                        <li id="bookFlightLink"><a href="/book.html">Book Your Flight</a></li>
+                        <li id="bookingsLink"><a href="/reservations.html">Bookings</a></li>
+                        <li id="loginLink"><a href="/login.html">Log In</a></li>
+                        <li id="logoutLink" style="display:none;"><a href="#" onclick="logout()">Log Out</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="mainContainer">
+        <div class="leftImage">
+            <img class="firstImage" src="/assets/trip.jpg" alt="Travel Image">
+        </div>
+        <div class="rightContainer">
+            <h3>Welcome Back!</h3>
+            <form id="loginForm">
+                <div class="input-container">
+                    <input type="email" placeholder="Email" id="emailInput">
+                    <img class="input-icon" src="/assets/email-icon.png" alt="Email Icon">
+                </div>
+                <div class="input-container">
+                    <input id="passwordInput" type="password" placeholder="Password" autocomplete="current-password">
+                    <img class="input-icon2" src="/assets/password-hide.png" alt="Password Icon">
+                </div>
+                <input type="submit" value="Log In">
+                <button id="registerButton">Create An Account</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const logo = document.querySelector('.input-icon2');
+            const passwordInput = document.getElementById('passwordInput');
+            logo.addEventListener('click', function () {
+                passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+                logo.src = passwordInput.type === 'password' ? '/assets/password-hide.png' : '/assets/password-icon.png';
+            });
+            const registerButton = document.getElementById('registerButton');
+            registerButton.addEventListener('click', function () {
+                redirectToRegister();
+            });
+        });
+
+        function redirectToRegister() {
+            window.location.href = './register.html';
+        }
+    </script>
+</body>
+</html>
