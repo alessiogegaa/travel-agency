@@ -182,7 +182,7 @@ function addDataToTable(bookings) {
         cell6.innerHTML = bookings[i].leaving_from;
         cell7.innerHTML = bookings[i].traveling_to;
         cell8.innerHTML = bookings[i].gender;
-        //admin alesiogega5@epoka.edu.al Gegaalessio2003
+        //admin agega21@epoka.edu.al Gegaalessio2003
         const userRole = localStorage.getItem('role');
 
         if (userRole && userRole === 'admin') {
