@@ -24,8 +24,8 @@ $(document).ready(function () {
       });
     });
   });
-  const accessToken = localStorage.getItem('accessToken') || null;
-document.addEventListener('DOMContentLoaded', function () { 
+  var accessToken = localStorage.getItem('accessToken');
+  document.addEventListener('DOMContentLoaded', function () { 
     const homeLink = document.getElementById('homeLink');
     const bookFlightLink = document.getElementById('bookFlightLink');
     const bookingsLink = document.getElementById('bookingsLink');
