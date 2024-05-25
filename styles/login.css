@@ -137,4 +137,11 @@ input[type="submit"]:hover,button:hover {
     display: none;
 }
 
+@media screen and (max-width: 768px) {
+    .mainContainer {
+        flex-direction: column;
+        width: 90%; 
+    }
 
+   
+}

@@ -14,6 +14,7 @@ $(document).ready(function () {
         success: function (response) {
           localStorage.setItem('accessToken', response.accessToken);
           localStorage.setItem('role', response.role);
+          localStorage.setItem('id',response.id);
           alert('Login successful');
           window.location.href = '/index.html';
         },
@@ -53,3 +54,20 @@ $(document).ready(function () {
     window.location.href = '/login.html';
 
   }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const logo = document.querySelector('.input-icon2');
+    const passwordInput = document.getElementById('passwordInput');
+    logo.addEventListener('click', function () {
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        logo.src = passwordInput.type === 'password' ? '/assets/password-hide.png' : '/assets/password-icon.png';
+    });
+    const registerButton = document.getElementById('registerButton');
+    registerButton.addEventListener('click', function () {
+        redirectToRegister();
+    });
+});
+
+function redirectToRegister() {
+    window.location.href = './register.html';
+}

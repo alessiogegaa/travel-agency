@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveler</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" >
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/script/faq.js"></script>
+  </head>
+  <body id="top">
+    <header class="header" data-header>
+  
+      <div class="overlay" data-overlay></div>
+  
+      <div class="header-top">
+        <div class="container">
+  
+          <a href="tel:+355688888888" class="helpline-box">
+  
+            <div class="icon-box">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+  
+            <div class="wrapper">
+              <p class="helpline-title">For Further Inquires :</p>
+  
+              <p class="helpline-number">+355 68 888 8888</p>
+            </div>
+  
+          </a>
+  
+          <a href="#" class="logo">
+            <img src="/assets/logo.png" alt="Tourly logo">
+          </a>
+  
+          <div class="header-btn-group">
+  
+            <button class="search-btn" aria-label="Search">
+              <ion-icon name="search"></ion-icon>
+            </button>
+  
+            <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+              <ion-icon name="menu-outline"></ion-icon>
+            </button>
+  
+          </div>
+  
+        </div>
+      </div>
+  
+      <div class="header-bottom">
+        <div class="container">
+  
+          <ul class="social-list">
+  
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+  
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+  
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+  
+          </ul>
+  
+          <nav class="navbar" data-navbar>
+  
+            <div class="navbar-top">
+  
+              <a href="#" class="logo">
+                <img src="/assets/logo.png" alt="Tourly logo">
+              </a>
+  
+              <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+  
+            </div>
+  
+            <ul class="navbar-list">
+  
+              <li id="homeLink">
+                <a href="/" class="navbar-link" data-nav-link>home</a>
+              </li>
+
+              <li id="aboutLink">
+                <a href="/about-us.html" class="navbar-link" data-nav-link>about us</a>
+              </li>
+  
+              <li id="bookingsLink">
+                <a href="/bookings.html" class="navbar-link" data-nav-link>Bookings</a>
+            </li>
+
+            <li id="loginLink">
+                <a href="/login.html" class="navbar-link" data-nav-link>log in</a>
+            </li>
+            
+            <li id="logoutLink" ><a href="#" class="navbar-link" data-nav-link onclick="logout()">Log Out</a></li>
+            </ul>
+  
+          </nav>
+  
+          <button class="btn btn-primary"><a href="/book.html">Book Now</a></button>
+  
+        </div>
+      </div>
+  
+    </header>
+    <main>
+      <article>
+  
+        <section class="hero" id="home" style=" min-height: 300px;">
+          <div class="container">
+  
+            <h2 class="h2 hero-title" style="color: white;">FAQ</h2>
+  
+          </div>
+        </section>
+        <section>
+      <div class="flex justify-center items-start my-2">
+        <div class="w-full sm:w-10/12 md:w-1/2 my-1">
+          <ul class="flex flex-col">
+            <li class="bg-white my-2 shadow-lg" x-data="accordion(1)">
+              <h2
+                @click="handleClick()"
+                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+              >
+                <span>What are the popular destinations offered by Traveler?</span>
+                <svg
+                  :class="handleRotate()"
+                  class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+                </svg>
+              </h2>
+              <div
+                x-ref="tab"
+                :style="handleToggle()"
+                class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+              >
+                <p class="p-3 text-gray-900">
+                    Traveler offers a wide range of popular destinations, including exotic beaches, historical landmarks, adventurous mountains, and vibrant cities across the globe.
+                </p>
+              </div>
+            </li>
+            <li class="bg-white my-2 shadow-lg" x-data="accordion(2)">
+              <h2
+                @click="handleClick()"
+                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+              >
+                <span>How can I book a tour package with Traveler?</span>
+                <svg
+                  :class="handleRotate()"
+                  class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+                </svg>
+              </h2>
+              <div
+                class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+                x-ref="tab"
+                :style="handleToggle()"
+              >
+                <p class="p-3 text-gray-900">
+                    Booking a tour package with Traveler is easy! Simply browse through our website, select your desired destination, choose a suitable tour package, and follow the booking instructions provided. You can also contact our customer service team for personalized assistance.
+                </p>
+              </div>
+            </li>
+            <li class="bg-white my-2 shadow-lg" x-data="accordion(3)">
+              <h2
+                @click="handleClick()"
+                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+              >
+                <span>What are some popular destinations for adventure seekers?</span>
+                <svg
+                  :class="handleRotate()"
+                  class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+                </svg>
+              </h2>
+              <div
+                class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+                x-ref="tab"
+                :style="handleToggle()"
+              >
+                <p class="p-3 text-gray-900">
+                    Traveler offers thrilling adventures in destinations like the Swiss Alps for skiing, the Amazon Rainforest for jungle exploration, and New Zealand for bungee jumping and skydiving.                </p>
+              </div>
+            </li>
+            <li class="bg-white my-2 shadow-lg" x-data="accordion(4)">
+              <h2
+                @click="handleClick()"
+                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+              >
+                <span> Are there any family-friendly vacation packages available?</span>
+                <svg
+                  :class="handleRotate()"
+                  class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+                </svg>
+              </h2>
+              <div
+                class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+                x-ref="tab"
+                :style="handleToggle()"
+              >
+                <p class="p-3 text-gray-900">
+                    Yes, Traveler provides family-friendly vacation packages to destinations such as Disneyland in California, Orlando, Florida for theme parks, and beach resorts in Hawaii.                </p>
+              </div>
+            </li>
+            <li class="bg-white my-2 shadow-lg" x-data="accordion(5)">
+              <h2
+                @click="handleClick()"
+                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+              >
+                <span>Can I customize my travel itinerary?</span>
+                <svg
+                  :class="handleRotate()"
+                  class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+                </svg>
+              </h2>
+              <div
+                class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+                x-ref="tab"
+                :style="handleToggle()"
+              >
+                <p class="p-3 text-gray-900">
+                    Absolutely! Traveler offers customizable itineraries tailored to your preferences. Whether you want to explore cultural landmarks, indulge in culinary experiences, or relax on pristine beaches, we can create the perfect itinerary for you.
+                </p>
+              </div>
+            </li>
+            <li class="bg-white my-2 shadow-lg" x-data="accordion(6)">
+              <h2
+                @click="handleClick()"
+                class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+              >
+                <span>What payment methods do you accept?</span>
+                <svg
+                  :class="handleRotate()"
+                  class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+                </svg>
+              </h2>
+              <div
+                class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+                x-ref="tab"
+                :style="handleToggle()"
+              >
+                <p class="p-3 text-gray-900">
+                  Any method of payments acceptable by you. For example: We accept MasterCard, Visa, American Express, PayPal, JCB Discover, Gift Cards, etc.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </section>
+    </article>
+    </main>
+    <footer class="footer">
+
+        <div class="footer-top">
+          <div class="container">
+    
+            <div class="footer-brand">
+    
+              <a href="#" class="logo">
+                <img src="/assets/logo.png" alt="Tourly logo">
+              </a>
+    
+              <p class="footer-text">
+                Urna ratione ante harum provident, eleifend, vulputate molestiae proin fringilla, praesentium magna conubia
+                at
+                perferendis, pretium, aenean aut ultrices.
+              </p>
+    
+            </div>
+    
+            <div class="footer-contact">
+    
+              <h4 class="contact-title">Contact Us</h4>
+    
+              <p class="contact-text">
+                Feel free to contact and reach us !!
+              </p>
+    
+              <ul>
+    
+                <li class="contact-item">
+                  <ion-icon name="call-outline"></ion-icon>
+    
+                  <a href="tel:+355 68 888 8888" class="contact-link">+355 68 888 8888</a>
+                </li>
+    
+                <li class="contact-item">
+                  <ion-icon name="mail-outline"></ion-icon>
+    
+                  <a href="mailto:info@traveler.com" class="contact-link">info@traveler.com</a>
+                </li>
+    
+                <li class="contact-item">
+                  <ion-icon name="location-outline"></ion-icon>
+    
+                  <address>Tirana Albania</address>
+                </li>
+    
+              </ul>
+    
+            </div>
+    
+            <div class="footer-form">
+    
+              <p class="form-text">
+                Subscribe our newsletter for more update & news !!
+              </p>
+    
+              <form action="" class="form-wrapper">
+                <input type="email" name="email" class="input-field" placeholder="Enter Your Email" required>
+    
+                <button type="submit" class="btn btn-secondary">Subscribe</button>
+              </form>
+    
+            </div>
+    
+          </div>
+        </div>
+    
+        <div class="footer-bottom">
+          <div class="container">
+    
+            <p class="copyright">
+             &copy;<a id="currentYear" href="">codewithsadee</a>. All rights reserved
+            </p>
+    
+            <ul class="footer-bottom-list">
+    
+              <li>
+                <a href="/privacy-policy.html" class="footer-bottom-link">Privacy Policy</a>
+              </li>
+    
+              <li>
+                <a href="/terms-conditions.html" class="footer-bottom-link">Term & Condition</a>
+              </li>
+    
+              <li>
+                <a href="/faq.html" class="footer-bottom-link">FAQ</a>
+              </li>
+    
+            </ul>
+    
+          </div>
+        </div>
+    
+      </footer>
+    
+  </body>
+</html>

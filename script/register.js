@@ -59,3 +59,15 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = '/login.html';
 
   }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const passwordToggleIcons = document.querySelectorAll('.input-icon');
+    const passwordInputs = document.querySelectorAll('.password-input');
+
+    passwordToggleIcons.forEach((icon, index) => {
+        icon.addEventListener('click', function () {
+            passwordInputs[index].type = passwordInputs[index].type === 'password' ? 'text' : 'password';
+            icon.src = passwordInputs[index].type === 'password' ? '../assets/password-hide.png' : '../assets/password-icon.png';
+        });
+    });
+});

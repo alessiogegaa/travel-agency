@@ -11,6 +11,17 @@ function getSelectedGender() {
     return selectedGender;
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+        window.location.href = '/login.html'; 
+    }
+
+        const currentYear = new Date().getFullYear();
+      
+        document.getElementById('currentYear').textContent = currentYear;
+
+});
 function validateAndSubmit(event){
     event.preventDefault();
 
@@ -66,27 +77,8 @@ function validateAndSubmit(event){
 }
 
 var accessToken = localStorage.getItem('accessToken');
-document.addEventListener('DOMContentLoaded', function () { 
-    const homeLink = document.getElementById('homeLink');
-    const bookFlightLink = document.getElementById('bookFlightLink');
-    const bookingsLink = document.getElementById('bookingsLink');
-    const loginLink = document.getElementById('loginLink');
-    const logoutLink = document.getElementById('logoutLink');
-
-    if (accessToken!=null) {
-      homeLink.style.display = 'inline-block';
-      bookFlightLink.style.display = 'inline-block';
-      bookingsLink.style.display = 'inline-block';
-      loginLink.style.display = 'none';
-      logoutLink.style.display = 'inline-block';
-    } else {
-      homeLink.style.display = 'inline-block';
-      bookFlightLink.style.display = 'none';
-      bookingsLink.style.display = 'none';
-      loginLink.style.display = 'inline-block';
-      logoutLink.style.display = 'none';
-    }
-}); 
+var id = localStorage.getItem('id');
+var role = localStorage.getItem('role');
 
   function logout() {
     localStorage.removeItem('accessToken');
@@ -105,7 +97,8 @@ function handleSubmit(_Name,_LastName, _Email, _NumberOfPersons, _PhoneNumber, _
         number_of_persons: _NumberOfPersons,
         leaving_from: leaving,
         traveling_to: travelling,
-        gender:_Gender
+        gender:_Gender,
+        user_id: id
     }
     var jsonString = JSON.stringify(newBook);
     console.log(jsonString);
@@ -143,6 +136,7 @@ function submitForm() {
     $.ajax({
         url: 'http://localhost:3000/api/bookings',
         method: 'GET',
+        data: {user_id: id, role: role},
         headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -162,36 +156,89 @@ function addDataToTable(bookings) {
     for (let i = 0; i < bookings.length; i++) {
         const newRow = table.insertRow(table.rows.length);
 
-        const cell0 = newRow.insertCell(0); 
-        const cell1 = newRow.insertCell(1);
-        const cell2 = newRow.insertCell(2);
-        const cell3 = newRow.insertCell(3);
-        const cell4 = newRow.insertCell(4);
-        const cell5 = newRow.insertCell(5);
-        const cell6 = newRow.insertCell(6);
-        const cell7 = newRow.insertCell(7);
-        const cell8 = newRow.insertCell(8);
-        const cell9 = newRow.insertCell(9); 
+        newRow.className = 'bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600';
 
-        cell0.innerHTML = bookings[i].booking_id; 
-        cell1.innerHTML = bookings[i].first_name;
-        cell2.innerHTML = bookings[i].last_name;
-        cell3.innerHTML = bookings[i].email;
-        cell4.innerHTML = bookings[i].phone_number;
-        cell5.innerHTML = bookings[i].number_of_persons;
-        cell6.innerHTML = bookings[i].leaving_from;
-        cell7.innerHTML = bookings[i].traveling_to;
-        cell8.innerHTML = bookings[i].gender;
-        //admin agega21@epoka.edu.al Gegaalessio2003
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+        const cell6 = newRow.insertCell(5);
+        const cell7 = newRow.insertCell(6);
+        const cell8 = newRow.insertCell(7);
+        const cell9 = newRow.insertCell(8);
+
+        cell1.className = 'px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white';
+        cell2.className = 'px-6 py-4';
+        cell3.className = 'px-6 py-4';
+        cell4.className = 'px-6 py-4';
+        cell5.className = 'px-6 py-4';
+        cell6.className = 'px-6 py-4';
+        cell7.className = 'px-6 py-4';
+        cell8.className = 'px-6 py-4';
+
+        cell1.innerHTML = bookings[i].booking_id; 
+        cell2.innerHTML = bookings[i].first_name;
+        cell3.innerHTML = bookings[i].last_name;
+        cell4.innerHTML = bookings[i].email;
+        cell5.innerHTML = bookings[i].phone_number;
+        cell6.innerHTML = bookings[i].number_of_persons;
+        cell7.innerHTML = bookings[i].leaving_from;
+        cell8.innerHTML = bookings[i].traveling_to;
+        cell9.innerHTML = bookings[i].gender;
+
         const userRole = localStorage.getItem('role');
 
         if (userRole && userRole === 'admin') {
-            cell9.innerHTML = '<span class="edit-btn" onclick="editRow(this)">Edit</span> <span class="remove-btn" onclick="removeRow(this)">Remove</span>';
+            const cell10 = newRow.insertCell(9);
+            cell10.innerHTML = '<span class="edit-btn" onclick="editRow(this)">Edit</span> <span class="remove-btn" onclick="removeRow(this)">Remove</span>';
+            cell10.className = 'px-6 py-4';
         }
     }
 }
+$(document).ready(function() {
+    let timeoutId;
+
+    function delayedSearch() {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(searchBookings, 2000); 
+    }
+
+    function searchBookings() {
+        const filter = $('#table-search').val().toUpperCase();
+        const rows = $('#reservationTable').find('tr');
+
+        rows.each(function(index, row) {
+            if (index > 0) { 
+                const cells = $(row).find('td');
+                let found = false;
+
+                if (filter === '') {
+                    $(row).show(); 
+                } else {
+                    cells.each(function(index, cell) {
+                        const txtValue = $(cell).text().toUpperCase();
+                        if (txtValue.indexOf(filter) > -1) {
+                            found = true;
+                            return false; 
+                        }
+                    });
+
+                    if (found) {
+                        $(row).show();
+                    } else {
+                        $(row).hide();
+                    }
+                }
+            }
+        });
+    }
+
+    $('#table-search').on('input', delayedSearch);
+});
 
 
+ 
 $(document).ready(function () {
     submitForm();
 });
@@ -288,6 +335,5 @@ $(document).ready(function (){
         });
     });
 });
-
 
 

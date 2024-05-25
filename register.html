@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Agency - Register</title>
+    <title>Traveler</title>
     <link rel="stylesheet" href="styles/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="script/register.js"></script>
+    <link rel="shortcut icon" href="/assets/favicon.png" >
+    
 </head>
 
 <body>
@@ -17,7 +19,7 @@
                     <ul>
                         <li id="homeLink"><a href="/index.html">Home</a></li>
                         <li id="bookFlightLink"><a href="/book.html">Book Your Flight</a></li>
-                        <li id="bookingsLink"><a href="/reservations.html">Bookings</a></li>
+                        <li id="bookingsLink"><a href="/bookings.html">Bookings</a></li>
                         <li id="loginLink"><a href="/login.html">Log In</a></li>
                         <li id="logoutLink" style="display:none;"><a href="#" onclick="logout()">Log Out</a></li>
                     </ul>
@@ -46,18 +48,5 @@
             </form>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const passwordToggleIcons = document.querySelectorAll('.input-icon');
-            const passwordInputs = document.querySelectorAll('.password-input');
-    
-            passwordToggleIcons.forEach((icon, index) => {
-                icon.addEventListener('click', function () {
-                    passwordInputs[index].type = passwordInputs[index].type === 'password' ? 'text' : 'password';
-                    icon.src = passwordInputs[index].type === 'password' ? '/assets/password-hide.png' : '/assets/password-icon.png';
-                });
-            });
-        });
-    </script>
 </body>
 </html>

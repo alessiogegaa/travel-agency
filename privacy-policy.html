@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traveler</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" >
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/script/faq.js"></script>
+  </head>
+  <body id="top">
+    <header class="header" data-header>
+  
+      <div class="overlay" data-overlay></div>
+  
+      <div class="header-top">
+        <div class="container">
+  
+          <a href="tel:+355688888888" class="helpline-box">
+  
+            <div class="icon-box">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+  
+            <div class="wrapper">
+              <p class="helpline-title">For Further Inquires :</p>
+  
+              <p class="helpline-number">+355 68 888 8888</p>
+            </div>
+  
+          </a>
+  
+          <a href="#" class="logo">
+            <img src="/assets/logo.png" alt="Tourly logo">
+          </a>
+  
+          <div class="header-btn-group">
+  
+            <button class="search-btn" aria-label="Search">
+              <ion-icon name="search"></ion-icon>
+            </button>
+  
+            <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+              <ion-icon name="menu-outline"></ion-icon>
+            </button>
+  
+          </div>
+  
+        </div>
+      </div>
+  
+      <div class="header-bottom">
+        <div class="container">
+  
+          <ul class="social-list">
+  
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+  
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+  
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+  
+          </ul>
+  
+          <nav class="navbar" data-navbar>
+  
+            <div class="navbar-top">
+  
+              <a href="#" class="logo">
+                <img src="/assets/logo.png" alt="Tourly logo">
+              </a>
+  
+              <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+  
+            </div>
+  
+            <ul class="navbar-list">
+  
+              <li id="homeLink">
+                <a href="/" class="navbar-link" data-nav-link>home</a>
+              </li>
+
+              <li id="aboutLink">
+                <a href="/about-us.html" class="navbar-link" data-nav-link>about us</a>
+              </li>
+  
+              <li id="bookingsLink">
+                <a href="/bookings.html" class="navbar-link" data-nav-link>Bookings</a>
+            </li>
+
+            <li id="loginLink">
+                <a href="/login.html" class="navbar-link" data-nav-link>log in</a>
+            </li>
+            
+            <li id="logoutLink" ><a href="#" class="navbar-link" data-nav-link onclick="logout()">Log Out</a></li>
+            </ul>
+  
+          </nav>
+  
+          <button class="btn btn-primary"><a href="/book.html">Book Now</a></button>
+  
+        </div>
+      </div>
+  
+    </header>
+    <main>
+      <article>
+  
+        <section class="hero" id="home" style=" min-height: 300px;">
+          <div class="container">
+  
+            <h2 class="h2 hero-title" style="color: white;">Privacy Policy</h2>
+  
+          </div>
+        </section>
+        <section>
+            <div class="bg-gray-100">
+                <div class="container mx-auto px-4 py-8">
+                    <h1 class="text-3xl font-bold mb-4">Privacy Policy</h1>
+            
+                    <p class="mb-4">
+                        This privacy policy sets out how our website uses and protects any information that you give us when you use
+                        this
+                        website.
+                    </p>
+            
+                    <h2 class="text-2xl font-bold mb-2">Information We Collect</h2>
+            
+                    <p class="mb-4">
+                        We may collect the following information:
+                    </p>
+            
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Your name and contact information</li>
+                        <li>Demographic information</li>
+                        <li>Other information relevant to customer surveys and/or offers</li>
+                    </ul>
+            
+                    <h2 class="text-2xl font-bold mb-2">How We Use the Information</h2>
+            
+                    <p class="mb-4">
+                        We require this information to understand your needs and provide you with a better service, and in
+                        particular
+                        for
+                        the following reasons:
+                    </p>
+            
+                    <ul class="list-disc list-inside mb-4">
+                        <li>Internal record keeping</li>
+                        <li>Improving our products and services</li>
+                        <li>Sending promotional emails about new products, special offers, or other information which we think you
+                            may
+                            find
+                            interesting</li>
+                        <li>From time to time, we may also use your information to contact you for market research purposes. We may
+                            contact
+                            you by email, phone, or mail. We may use the information to customize the website according to your
+                            interests.</li>
+                    </ul>
+            
+                    <h2 class="text-2xl font-bold mb-2">Security</h2>
+            
+                    <p class="mb-4">
+                        We are committed to ensuring that your information is secure. In order to prevent unauthorized access or
+                        disclosure,
+                        we have put in place suitable physical, electronic, and managerial procedures to safeguard and secure the
+                        information we collect online.
+                    </p>
+            
+                    <h2 class="text-2xl font-bold mb-2">Cookies</h2>
+            
+                    <p class="mb-4">
+                        A cookie is a small file that asks permission to be placed on your computer's hard drive. Once you agree,
+                        the
+                        file
+                        is added, and the cookie helps analyze web traffic or lets you know when you visit a particular site.
+                        Cookies
+                        allow
+                        web applications to respond to you as an individual. The web application can tailor its operations to your
+                        needs,
+                        likes, and dislikes by gathering and remembering information about your preferences.
+                    </p>
+            
+                    <p class="mb-4">
+                        Overall, cookies help us provide you with a better website by enabling us to monitor which pages you find
+                        useful
+                        and which you do not. A cookie in no way gives us access to your computer or any information about you,
+                        other
+                        than
+                        the data you choose to share with us.
+                    </p>
+            
+                    <h2 class="text-2xl font-bold mb-2">Links to Other Websites</h2>
+            
+                    <p class="mb-4">
+                        Our website may contain links to other websites of interest. However, once you have used these links to
+                        leave
+                        our
+                        site, you should note that we do not have any control over that other website. Therefore, we cannot be
+                        responsible
+                        for the protection and privacy of any information which you provide whilst visiting such sites and such
+                        sites
+                        are
+                        not governed by this privacy statement. You should exercise caution and look at the privacy statement
+                        applicable
+                        to
+                        the website in question.
+                    </p>
+            
+                    <h2 class="text-2xl font-bold mb-2">Controlling Your Personal Information</h2>
+            
+                    <p class="mb-4">
+                        You may choose to restrict the collection or use of your personal information in the following ways:
+                    </p>
+            
+                    <ul class="list-disc list-inside mb-4">
+                        <li>If you have previously agreed to us using your personal information for direct marketing purposes, you
+                            may
+                            change your mind at any time by writing to or emailing us at [email protected]</li>
+                        <li>We will not sell, distribute, or lease your personal information to third parties unless we have your
+                            permission
+                            or are required by law to do so. We may use your personal information to send you promotional
+                            information
+                            about
+                            third parties which we think you may find interesting if you tell us that you wish this to happen.</li>
+                        <li>You may request details of personal information which we hold about you. If you would like a copy of the
+                            information held on you, please write to [Your Company Name, Address, City, State, Zip Code] or email
+                            [email protected]</li>
+                        <li>If you believe that any information we are holding on you is incorrect or incomplete, please write to or
+                            email
+                            us as soon as possible at the above address. We will promptly correct any information found to be
+                            incorrect.
+                        </li>
+                    </ul>
+            
+                    <p class="mb-4">
+                        This privacy policy is subject to change without notice.
+                    </p>
+                </div>
+            </div>
+      </section>
+    </article>
+    </main>
+    <footer class="footer">
+
+        <div class="footer-top">
+          <div class="container">
+    
+            <div class="footer-brand">
+    
+              <a href="#" class="logo">
+                <img src="/assets/logo.png" alt="Tourly logo">
+              </a>
+    
+              <p class="footer-text">
+                Urna ratione ante harum provident, eleifend, vulputate molestiae proin fringilla, praesentium magna conubia
+                at
+                perferendis, pretium, aenean aut ultrices.
+              </p>
+    
+            </div>
+    
+            <div class="footer-contact">
+    
+              <h4 class="contact-title">Contact Us</h4>
+    
+              <p class="contact-text">
+                Feel free to contact and reach us !!
+              </p>
+    
+              <ul>
+    
+                <li class="contact-item">
+                  <ion-icon name="call-outline"></ion-icon>
+    
+                  <a href="tel:+355 68 888 8888" class="contact-link">+355 68 888 8888</a>
+                </li>
+    
+                <li class="contact-item">
+                  <ion-icon name="mail-outline"></ion-icon>
+    
+                  <a href="mailto:info@traveler.com" class="contact-link">info@traveler.com</a>
+                </li>
+    
+                <li class="contact-item">
+                  <ion-icon name="location-outline"></ion-icon>
+    
+                  <address>Tirana Albania</address>
+                </li>
+    
+              </ul>
+    
+            </div>
+    
+            <div class="footer-form">
+    
+              <p class="form-text">
+                Subscribe our newsletter for more update & news !!
+              </p>
+    
+              <form action="" class="form-wrapper">
+                <input type="email" name="email" class="input-field" placeholder="Enter Your Email" required>
+    
+                <button type="submit" class="btn btn-secondary">Subscribe</button>
+              </form>
+    
+            </div>
+    
+          </div>
+        </div>
+    
+        <div class="footer-bottom">
+          <div class="container">
+    
+            <p class="copyright">
+             &copy;<a id="currentYear" href="">codewithsadee</a>. All rights reserved
+            </p>
+    
+            <ul class="footer-bottom-list">
+    
+              <li>
+                <a href="/privacy-policy.html" class="footer-bottom-link">Privacy Policy</a>
+              </li>
+    
+              <li>
+                <a href="/terms-conditions.html" class="footer-bottom-link">Term & Condition</a>
+              </li>
+    
+              <li>
+                <a href="/faq.html" class="footer-bottom-link">FAQ</a>
+              </li>
+    
+            </ul>
+    
+          </div>
+        </div>
+    
+      </footer>
+</body>
+</html>
